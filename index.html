@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Highcharts Exercise</title>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+  </head>
+  <body>
+    <h1></h1>
+
+    <!-- OPTIONALLY PUT A SELECT OR BUTTON ELEMENT HERE - FURTHER EXPLORATION ONLY -->
+
+    <div id="my-chart-container">
+    </div>
+
+    <script type="text/javascript">
+    var myDataSet =
+      [
+        {name: 'Female', data: [41.1, 41.7, 47.1, 45.5, 41.1, 42.5, 39.6, 41.6] },
+        {name: 'Male', data: [38.1, 38.2, 44.8, 43.1, 38.1, 38.7, 36.5, 39.2] }
+      ]
+    var chartConfigurationOptions = {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Median Age by County'
+        },
+        subtitle: {
+            text: 'Source: data.ctdata.org'
+        },
+        xAxis: {
+            categories: ['Fairfield County', 'Hartford County', 'Litchfield County',
+            'Middlesex County', 'New Haven County', 'New London County', 'Tolland County', 'Windham County'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Age (years)',
+                align: 'middle'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' years old'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: myDataSet
+      };
+
+
+    Highcharts.chart('my-chart-container', chartConfigurationOptions);
+
+    </script>
+  </body>
+</html>
