@@ -3,79 +3,92 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Highcharts Exercise</title>
+    <title>DataViz - Mark Anderson</title>
     <script src="http://code.highcharts.com/highcharts.js"></script>
   </head>
   <body>
     <h1></h1>
 
-    <!-- OPTIONALLY PUT A SELECT OR BUTTON ELEMENT HERE - FURTHER EXPLORATION ONLY -->
+    <select id="year-selector">
+      <option value="2007-2011" selected="true">2007-2011</option>
+      <option value="2011-2015">2011-2015</option>
+    </select>
 
     <div id="my-chart-container">
     </div>
 
     <script type="text/javascript">
-    var myDataSet =
-      [
+    var MedianByYear = {
+      "2007-2011": [
         {name: 'Female', data: [41.1, 41.7, 47.1, 45.5, 41.1, 42.5, 39.6, 41.6] },
         {name: 'Male', data: [38.1, 38.2, 44.8, 43.1, 38.1, 38.7, 36.5, 39.2] }
+      ],
+      "2011-2015": [
+        {name: 'Female', data: [40.5, 41.2, 44.9, 43.5, 40.3, 41.4, 38.8, 40.4] },
+        {name: 'Male', data: [37.9, 38.1, 42.8, 41.7, 37.4, 38.5, 36.3, 37.6] }
       ]
-    var chartConfigurationOptions = {
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: 'Median Age by County'
-        },
-        subtitle: {
-            text: 'Source: data.ctdata.org'
-        },
-        xAxis: {
-            categories: ['Fairfield County', 'Hartford County', 'Litchfield County',
-            'Middlesex County', 'New Haven County', 'New London County', 'Tolland County', 'Windham County'],
-            title: {
-                text: null
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Age (years)',
-                align: 'middle'
-            },
-            labels: {
-                overflow: 'justify'
-            }
-        },
-        tooltip: {
-            valueSuffix: ' years old'
-        },
-        plotOptions: {
-            bar: {
-                dataLabels: {
-                    enabled: true
-                }
-            }
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'top',
-            x: -40,
-            y: 80,
-            floating: true,
-            borderWidth: 1,
-            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-            shadow: true
-        },
-        credits: {
-            enabled: false
-        },
-        series: myDataSet
-      };
+    }
+
+    function makeMyChart() {
+      var chartConfigurationOptions = {
+          chart: {
+              type: 'bar'
+          },
+          title: {
+              text: 'Median Age by County'
+          },
+          subtitle: {
+              text: 'Source: data.ctdata.org'
+          },
+          xAxis: {
+              categories: ['Fairfield County', 'Hartford County', 'Litchfield County',
+              'Middlesex County', 'New Haven County', 'New London County', 'Tolland County', 'Windham County'],
+              title: {
+                  text: null
+              }
+          },
+          yAxis: {
+              min: 0,
+              title: {
+                  text: 'Age (years)',
+                  align: 'middle'
+              },
+              labels: {
+                  overflow: 'justify'
+              }
+          },
+          tooltip: {
+              valueSuffix: ' years old'
+          },
+          plotOptions: {
+              bar: {
+                  dataLabels: {
+                      enabled: true
+                  }
+              }
+          },
+          legend: {
+              layout: 'vertical',
+              align: 'right',
+              verticalAlign: 'top',
+              x: -40,
+              y: 80,
+              floating: true,
+              borderWidth: 1,
+              backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+              shadow: true
+          },
+          credits: {
+              enabled: false
+          },
+          series: MedianByYear["2007-2011"]
+        };
 
 
-    Highcharts.chart('my-chart-container', chartConfigurationOptions);
+      Highcharts.chart('my-chart-container', chartConfigurationOptions);
+    }
+
+    makeMyChart()
 
     </script>
   </body>
