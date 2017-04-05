@@ -18,6 +18,16 @@
     </div>
 
     <script type="text/javascript">
+
+    var yearSelector = document.getElementById('year-selector')
+
+    function selectYear() {
+      console.log("SELECTED YEAR: ", yearSelector.value)
+      makeMyChart()
+    }
+
+    yearSelector.addEventListener("change", selectYear, false)
+
     var MedianByYear = {
       "2007-2011": [
         {name: 'Female', data: [41.1, 41.7, 47.1, 45.5, 41.1, 42.5, 39.6, 41.6] },
@@ -30,12 +40,13 @@
     }
 
     function makeMyChart() {
+      var selectedYear = yearSelector.value
       var chartConfigurationOptions = {
           chart: {
               type: 'bar'
           },
           title: {
-              text: 'Median Age by County'
+              text: 'Median Age by County for years ' + selectedYear
           },
           subtitle: {
               text: 'Source: data.ctdata.org'
@@ -81,7 +92,7 @@
           credits: {
               enabled: false
           },
-          series: MedianByYear["2007-2011"]
+          series: MedianByYear[selectedYear]
         };
 
 
